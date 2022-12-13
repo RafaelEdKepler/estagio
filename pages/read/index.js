@@ -3,67 +3,47 @@ import { BsWind, BsFillCloudRainHeavyFill, BsFillSunFill, BsFillCloudsFill } fro
 import { RiCompass3Fill, RiMistFill } from "react-icons/ri"
 import { FaTemperatureHigh } from "react-icons/fa"
 import { useEffect, useState } from "react";
+import { api } from "../../services/api";
 
 export default function Read() {
 
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedLocal, setSelectedLocal] = useState("campus");
+  const [selectedLocal, setSelectedLocal] = useState(1);
   const [width, setWidth] = useState(0);
+  const [data, setData] = useState({});
 
   useEffect(() => {
     setIsLoading(false);
     const { innerWidth } = window;
     setWidth(innerWidth);
+    api.get(`/estacao/${selectedLocal}`).then(dados => setData(dados.data));
     window.addEventListener("resize", handleResize);
-  }, [])
+  }, [selectedLocal])
 
   const handleResize = () => {
     if (typeof window !== "undefined") {
-      const { innerWidth } = window;      
+      const { innerWidth } = window;
       width !== innerWidth && setWidth(innerWidth);
     }
   }
-  
+
   const handleSelectLocation = (location) => {
     setSelectedLocal(location)
   }
 
-  const info = {
-    "campus": {
-      nome: "Campus - Santa Rosa",
-      direcao: "Leste",
-      velocidade: "45",
-      pluviometro: "80",
-      temperatura: "25",
-      umidade: "25",
-      radiacao: "25",
-      pressao: "72"
-    },
-    "aeroporto": {
-      nome: "Aeroporto - Santa Rosa",
-      direcao: "Norte",
-      velocidade: "28",
-      pluviometro: "41",
-      temperatura: "22",
-      umidade: "27",
-      radiacao: "32",
-      pressao: "42"
-    }  
-  }
-
   return (
     <>
-      {!isLoading && (      
+      {!isLoading && (
       <Container>
         <Header>
-          <span>Temperatura: 25 °C</span>
+          <span>Temperatura: {data.temperatura} °C</span>
         </Header>
         <LocationContainer>
-          <Location location="santarosa" selected={selectedLocal === "campus"} onClick={() => handleSelectLocation("campus")}/>
-          <Location location="aeroporto" selected={selectedLocal === "aeroporto"} onClick={() => handleSelectLocation("aeroporto")}/>
+          <Location location="santarosa" selected={selectedLocal === 1} onClick={() => handleSelectLocation(1)}/>
+          <Location location="aeroporto" selected={selectedLocal === 2} onClick={() => handleSelectLocation(2)}/>
         </LocationContainer>
         <NameContainer>
-          <h2>{info[selectedLocal].nome}</h2>
+          <h2>{data.nome}</h2>
         </NameContainer>
         <InfoContainer>
           <InfoWithName>
@@ -72,7 +52,7 @@ export default function Read() {
               </InfoNameContainer>
             <Info>
               <RiCompass3Fill/>
-              <span>{info[selectedLocal].direcao}</span>
+              <span>{data.direcao}</span>
             </Info>
           </InfoWithName>
           <InfoWithName>
@@ -81,7 +61,7 @@ export default function Read() {
               </InfoNameContainer>
             <Info>
               <BsWind/>
-              <span>{info[selectedLocal].velocidade} Km/h</span>
+              <span>{data.velocidade} Km/h</span>
             </Info>
           </InfoWithName>
           <InfoWithName>
@@ -90,14 +70,14 @@ export default function Read() {
               </InfoNameContainer>
             <Info>
               <BsFillCloudRainHeavyFill/>
-              <span>{info[selectedLocal].pluviometro} mm</span>
+              <span>{data.pluviometro} mm</span>
             </Info>
           </InfoWithName>
           {width < 1024 && (
             <InfoWithName>
               <Info>
                 <FaTemperatureHigh/>
-                <span>{info[selectedLocal].temperatura} °C</span>
+                <span>{data.temperatura} °C</span>
               </Info>
             </InfoWithName>
           )}
@@ -107,7 +87,7 @@ export default function Read() {
               </InfoNameContainer>
             <Info>
               <RiMistFill/>
-              <span>{info[selectedLocal].umidade}%</span>
+              <span>{data.umidade} %</span>
             </Info>
           </InfoWithName>
           <InfoWithName>
@@ -116,7 +96,7 @@ export default function Read() {
               </InfoNameContainer>
             <Info>
               <BsFillSunFill/>
-              <span>{info[selectedLocal].radiacao}</span>
+              <span>{data.radiacao} mW</span>
             </Info>
           </InfoWithName>
           <InfoWithName>
@@ -125,7 +105,7 @@ export default function Read() {
               </InfoNameContainer>
             <Info>
               <BsFillCloudsFill/>
-              <span>{info[selectedLocal].pressao}</span>
+              <span>{data.pressao} Pa</span>
             </Info>
           </InfoWithName>
         </InfoContainer>

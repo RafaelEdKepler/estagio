@@ -1,0 +1,26 @@
+{
+  "estacao": [
+    {
+      "id": 1,
+      "nome": "Campus - Santa Rosa",
+      "direcao": "Leste",
+      "velocidade": "45",
+      "pluviometro": "80",
+      "temperatura": "25",
+      "umidade": "25",
+      "radiacao": "25",
+      "pressao": "72"
+    },
+    {
+      "id": 2,
+      "nome": "Aeroporto - Santa Rosa",
+      "direcao": "Norte",
+      "velocidade": "28",
+      "pluviometro": "41",
+      "temperatura": "22",
+      "umidade": "27",
+      "radiacao": "32",
+      "pressao": "42"
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   height: 100vh;
   background: url("./bg.png");
+  background-size: cover;
   padding-top: 0rem;
 
   @media (min-width: 1024px) {
@@ -17,8 +18,8 @@ export const Header = styled.div`
   left: 0;
   top: 0;
   background-color: var(--primary);
-  display: none;  
-  
+  display: none;
+
   @media (min-width: 1024px) {
     display: flex;
     justify-content: flex-end;
@@ -74,14 +75,14 @@ export const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 37px;
-  margin-top: 17px;  
+  margin-top: 17px;
 
-  @media (min-width: 700px) {    
+  @media (min-width: 700px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
 
-  @media (min-width: 1024px) {    
+  @media (min-width: 1024px) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -96,7 +97,7 @@ export const Info = styled.div`
   width: 19.813rem;
   height: 7.625rem;
   border-radius: 5px;
-  display: flex;  
+  display: flex;
   align-items: center;
   background-color: var(--primary);
   margin-bottom: 53px;
