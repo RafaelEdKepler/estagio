@@ -7,12 +7,15 @@ const GlobalStyle = createGlobalStyle`
     --secondary: #FFFFFF;
   }
 
-  body: {
+  body {
     margin: 0;
     padding: 0;
-    background-image: url(${img});    
-    background-size: 100% 100%; 
-    height: 100vh;
+    background-image: url(${img});
+    background-size: 100% 100%;
+
+    @media (min-width: 800px) {
+      height: 100vh;
+    }
   }
 `;
 

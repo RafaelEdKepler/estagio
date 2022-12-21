@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height: 100vh;
   background: url("./bg.png");
   background-size: cover;
   padding-top: 0rem;
 
-  @media (min-width: 1024px) {
+  @media (min-width: 800px) {
+    height: 100vh;
     padding-top: 5rem;
   }
 `;
@@ -20,7 +20,7 @@ export const Header = styled.div`
   background-color: var(--primary);
   display: none;
 
-  @media (min-width: 1024px) {
+  @media (min-width: 800px) {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -82,7 +82,7 @@ export const InfoContainer = styled.div`
     grid-template-columns: 1fr 1fr;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1100px) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
   }

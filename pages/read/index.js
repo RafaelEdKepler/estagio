@@ -73,7 +73,7 @@ export default function Read() {
               <span>{data.pluviometro} mm</span>
             </Info>
           </InfoWithName>
-          {width < 1024 && (
+          {width < 700 && (
             <InfoWithName>
               <Info>
                 <FaTemperatureHigh/>
